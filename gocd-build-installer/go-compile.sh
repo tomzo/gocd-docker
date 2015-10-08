@@ -15,6 +15,6 @@ else
   git remote add build "${REPO}"
   git fetch build
   git checkout "$COMMIT"
-done
+fi
 
 ./bn clean cruise:prepare
