@@ -42,8 +42,11 @@ if [ ! -d "$DIRECTORY/etc" ]; then
   # /var/lib/go-server/etc does not exist yet, we use the default one from image to initialize
   mv /etc/go /var/lib/go-server/etc
   ln -s /var/lib/go-server/etc /etc/go
+fi
+# /var/lib/go-server/etc exists, make sure there is a link to it
+if [[ -L "/etc/go" && -d "/etc/go" ]]; then
+    echo "/etc/go is a symlink to a directory"
 else
-  # /var/lib/go-server/etc exists, make sure there is a link to it
   mv /etc/go /etc/go.original
   ln -s /var/lib/go-server/etc /etc/go
 fi
