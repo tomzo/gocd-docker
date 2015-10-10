@@ -9,7 +9,7 @@ RUN curl --silent --location https://deb.nodesource.com/setup_4.x | bash - && ap
 
 RUN mkdir /etc/service/go-server
 ADD gocd-server/go-common-scripts.sh /etc/service/go-server/go-common-scripts.sh
-ADD gocd-server/go-server-start.sh /etc/service/go-server/run
+ADD gocd-server/run /etc/service/go-server/run
 
 ADD installers/go-server*.deb /tmp/go-server.deb
 
@@ -27,4 +27,6 @@ EXPOSE 8153 8154
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD ["/sbin/my_init"]
+ADD gocd-server/my_init_fug.sh /sbin/my_init_fug
+
+CMD ["/sbin/my_init_fug"]
