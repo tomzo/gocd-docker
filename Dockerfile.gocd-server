@@ -18,7 +18,7 @@ RUN ["useradd", "-r", "-c", "Go User", "-g", "go", "-d", "/var/go", "-m", "-s", 
 RUN ["mkdir", "-p", "/var/lib/go-server/addons", "/var/log/go-server", "/etc/go", "/go-addons"]
 RUN ["touch", "/etc/go/postgresqldb.properties"]
 RUN ["chown", "-R", "go:go", "/var/lib/go-server", "/var/log/go-server", "/etc/go", "/go-addons"]
-VOLUME ["/var/lib/go-server", "/var/log/go-server", "/etc/go", "/go-addons"]
+VOLUME ["/var/lib/go-server", "/var/log/go-server", "/go-addons"]
 
 WORKDIR /tmp
 RUN dpkg -i --debug=10 /tmp/go-server.deb

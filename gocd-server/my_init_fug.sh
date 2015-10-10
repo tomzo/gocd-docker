@@ -37,6 +37,12 @@ if ! $ret; then
     exit 1;
 fi
 
+# we want to keep /etc/go in /var/lib/go-server/etc
+if [ ! -d "$DIRECTORY/etc" ]; then
+  cp -Rf /etc/go /var/lib/go-server/etc
+  ln -s /var/lib/go-server/etc /etc/go
+fi
+
 OLDUID=$(id -u go)
 
 NEWUID=$(ls --numeric-uid-gid -d $DIRECTORY | awk '{ print $3 }')
