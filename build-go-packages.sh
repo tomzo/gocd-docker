@@ -18,7 +18,7 @@ echo "Building development environment"
 docker build -f Dockerfile.gocd-build-installer -t gocd-build-installer .
 
 echo "Building Go packages"
-docker run -it --name gocd-builder -e REPO=$REPO -e BRANCH=$BRANCH -e COMMIT=$COMMIT gocd-build-installer $PACKAGES
+docker run --name gocd-builder -e REPO=$REPO -e BRANCH=$BRANCH -e COMMIT=$COMMIT gocd-build-installer $PACKAGES
 docker cp gocd-builder:/installers .
 docker rm gocd-builder
 
